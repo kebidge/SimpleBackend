@@ -25,7 +25,7 @@ spec:
         - name: SPRING_DATASOURCE_USERNAME
           value: kebidge
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://database:5432/mydb
+          value: jdbc:postgresql://database:5432/simple-backend-db
         readinessProbe:
           httpGet:
             path: /actuator/health
