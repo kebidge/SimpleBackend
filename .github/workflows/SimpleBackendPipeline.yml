@@ -16,7 +16,7 @@ env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
   GKE_CLUSTER: test-cluster-1
   GKE_ZONE: us-central1-c
-  DEPLOYMENT_NAME: SimpleBackend
+  DEPLOYMENT_NAME: simple-backend
   IMAGE: simple-backend-image
   TAG: 1.0.0
 
