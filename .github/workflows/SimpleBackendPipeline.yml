@@ -71,9 +71,9 @@ jobs:
           service_account_key: ${{secrets.GKE_SA_KEY}}
           project_id: ${{secrets.GKE_PROJECT}}
 
-#      - name: Set Cluster # mal probieren -> WICHTIG !!!
-#        run: |-
-#          gcloud container clusters get-credentials test-cluster-1 --zone us-central1
+      - name: Set Cluster # mal probieren -> WICHTIG !!!
+        run: |-
+          gcloud container clusters get-credentials test-cluster-1 --zone us-central1
 
       # evtl nicht notwendig
       - name: Configure Docker
