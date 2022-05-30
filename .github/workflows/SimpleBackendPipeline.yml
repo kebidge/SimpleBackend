@@ -14,9 +14,9 @@ on:
 
 env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
-  GKE_CLUSTER: test-cluster-1
+  GKE_CLUSTER: hello-gke
   GKE_ZONE: us-central1-c
-  DEPLOYMENT_NAME: yuhu
+  DEPLOYMENT_NAME: hello-gke
   TAG: 1.0.0
 
 
