@@ -48,4 +48,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/SimpleBackend:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simple-backend:latest
