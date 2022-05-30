@@ -21,7 +21,7 @@ spec:
         name: simple-backend
         env:
         - name: SPRING_DATASOURCE_PASSWORD
-          value: 1234
+          value: "1234"
         - name: SPRING_DATASOURCE_USERNAME
           value: kebidge
         - name: SPRING_DATASOURCE_URL
