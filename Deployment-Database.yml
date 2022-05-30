@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: database
+  name: database
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: database
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: database
+    spec:
+      containers:
+      - image: postgres
+        name: postgres
+        env:
+        - name: POSTGRES_PASSWORD
+          value: 1234
+        - name: POSTGRES_USER
+          value: kebidge
+        - name: POSTGRES_DB
+          value: simple-backend-db

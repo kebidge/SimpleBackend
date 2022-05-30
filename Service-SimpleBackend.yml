@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: simple-backend
+  name: simple-backend
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8181
+    name: http
+  selector:
+    app: simple-backend
+  type: LoadBalancer
+status:
+  loadBalancer: {}
