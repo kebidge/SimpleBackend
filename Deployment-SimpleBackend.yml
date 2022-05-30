@@ -17,7 +17,7 @@ spec:
         app: simple-backend
     spec:
       containers:
-      - image: gcr.io/PROJECT_ID/IMAGE:TAG
+      - image: kebidge/simple-backend
         name: simple-backend
         env:
         - name: SPRING_DATASOURCE_PASSWORD
