@@ -14,9 +14,10 @@ on:
 
 env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
-  GKE_CLUSTER: hello-gke
+  GKE_CLUSTER: test-cluster-1
   GKE_ZONE: us-central1-c
-  DEPLOYMENT_NAME: hello-gke
+  DEPLOYMENT_NAME: hello-simple-backend
+  IMAGE: simple-backend-image
   TAG: 1.0.0
 
 
@@ -75,6 +76,19 @@ jobs:
         run: |-
           gcloud --quiet auth configure-docker
 
+      - name: Build Docker Image
+        #run: |-
+        #  docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
+        run: |-
+          docker build \
+          --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" \
+          .
+      - name: Publish Docker Image to GCR
+        run: |-
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+
       - name: Set up Kustomize
         run: |-
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
@@ -89,6 +103,7 @@ jobs:
 
       - name: Deploy Image to GKE cluster
         run: |-
+          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
