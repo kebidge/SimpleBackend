@@ -73,7 +73,7 @@ jobs:
 
       - name: Set Cluster # mal probieren -> WICHTIG !!!
         run: |-
-          gcloud container clusters get-credentials test-cluster-1 --zone us-central1
+          gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE
 
       # evtl nicht notwendig
       - name: Configure Docker
