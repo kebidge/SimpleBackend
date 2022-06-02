@@ -14,8 +14,8 @@ on:
 
 env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
-  GKE_CLUSTER: test-cluster-1
-  GKE_ZONE: us-central1
+  GKE_CLUSTER: test-cluster-2
+  GKE_ZONE: europe-west1-b
   DEPLOYMENT_NAME: simple-backend
   IMAGE: simple-backend-image
   TAG: 1.0.0
