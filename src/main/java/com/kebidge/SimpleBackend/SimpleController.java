@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 public class SimpleController { 
@@ -17,7 +19,7 @@ public class SimpleController {
     @Autowired
     SimpleRepository itemRepository; 
 
-    @PostMapping("/items/{item}")
+    @PostMapping("/item/{item}")
     public String addItem(@PathVariable String item){
  
         SimpleItem newItem = new SimpleItem(item);
@@ -26,30 +28,11 @@ public class SimpleController {
         return "Save Item!"; 
     } 
 
-    @PostMapping(path = "/item/{item}", produces = "application/json")
-    public SimpleItem addSimpleItemJSON(@PathVariable String item){
-
-        SimpleItem newItem = new SimpleItem(item);
-
-        Iterable<SimpleItem> iterableItems = itemRepository.findAll();
-        Iterator<SimpleItem> itemTerator = iterableItems.iterator();
-
-        while(itemTerator.hasNext()){
-
-            SimpleItem tempItem = itemTerator.next();
-
-            if (tempItem.item.equals(item)) {  
-
-                newItem.setId(tempItem.id);
-                itemRepository.save(newItem);  
-
-                return newItem;
-            }
-        }
-
-        itemRepository.save(newItem);
-
-        return newItem;
+    @PostMapping(consumes = "application/json", produces = "application/json", path = "/item/")
+    public SimpleItem addShoppingItemRequestBody(@RequestBody SimpleItem item) {
+    
+        itemRepository.save(item);
+        return item;
     }
 
  
