@@ -19,11 +19,12 @@ public class SimpleController {
     @Autowired
     SimpleRepository itemRepository; 
 
+    /*
     @GetMapping("/test")
 	public String helloTest() {
 		return "Hello Test!";
 	}
-
+    */
 
     @PostMapping("/item/{item}")
     public String addItem(@PathVariable String item){
@@ -34,12 +35,29 @@ public class SimpleController {
         return "Save Item!"; 
     } 
 
-    @PostMapping(consumes = "application/json", produces = "application/json", path = "/item/")
-    public SimpleItem addShoppingItemRequestBody(@RequestBody SimpleItem item) {
-    
-        itemRepository.save(item);
-        return item;
+    @PostMapping(consumes = "application/json", produces = "application/json", path = "/item/add")
+    public SimpleItem addShoppingItemRequestBody(@RequestBody SimpleItem newItem) {
+
+        Iterable<SimpleItem> iterableItems = itemRepository.findAll();
+        Iterator<SimpleItem> itemTerator = iterableItems.iterator();
+
+        while(itemTerator.hasNext()){
+
+            SimpleItem tempItem = itemTerator.next();
+
+            if (tempItem.item.equals(newItem.item)) {
+
+                itemRepository.save(newItem);  
+
+                return newItem;
+            }
+        }
+
+        itemRepository.save(newItem);
+
+        return newItem;
     }
+
 
  
     @GetMapping("/items")
