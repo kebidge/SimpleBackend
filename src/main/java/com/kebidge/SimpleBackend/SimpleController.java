@@ -19,12 +19,12 @@ public class SimpleController {
     @Autowired
     SimpleRepository itemRepository; 
 
-    
+    /*
     @GetMapping("/test")
 	public String helloTest() {
 		return "Hello Test!";
 	}
-    
+    */
 
     @PostMapping("/item/{item}")
     public String addItem(@PathVariable String item){
@@ -78,6 +78,25 @@ public class SimpleController {
         }
  
         return optionalItemList; 
-    }    
+    }   
+
+
+ 
+    @GetMapping("/allitems")
+    public ArrayList<String> getAllItems() {
+     
+        Iterable<SimpleItem> iterableItems = itemRepository.findAll();
+ 
+        ArrayList<String> itemList = new ArrayList<String>();
+         
+        Iterator<SimpleItem> itemIterator = iterableItems.iterator();
+
+        while(itemIterator.hasNext()){
+            SimpleItem tempItem = itemIterator.next();
+            itemList.add(tempItem.item);
+        }
+ 
+        return itemList; 
+    }   
 }
 
