@@ -71,7 +71,7 @@ jobs:
           service_account_key: ${{secrets.GKE_SA_KEY}}
           project_id: ${{secrets.GKE_PROJECT}}
 
-      - name: Set Cluster # mal probieren -> WICHTIG !!!
+      - name: Set Cluster # -> WICHTIG !!! run cmd is deprecated
 #        run: |-
 #          gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE
         uses: google-github-actions/get-gke-credentials@fb08709ba27618c31c09e014e1d8364b02e5042e

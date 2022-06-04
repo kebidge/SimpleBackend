@@ -19,6 +19,12 @@ public class SimpleController {
     @Autowired
     SimpleRepository itemRepository; 
 
+    @GetMapping("/test")
+	public String helloTest() {
+		return "Hello Test!";
+	}
+
+
     @PostMapping("/item/{item}")
     public String addItem(@PathVariable String item){
  
