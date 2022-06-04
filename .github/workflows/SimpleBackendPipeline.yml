@@ -119,8 +119,10 @@ jobs:
       - name: Deploy Image to GKE cluster
         run: |-
           kubectl delete deployment $DEPLOYMENT_NAME
+          kubectl delete deployment simple-frontend
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
+          kubectl rollout status deployment/simple-frontend
           kubectl get services
           kubectl get pods
 
