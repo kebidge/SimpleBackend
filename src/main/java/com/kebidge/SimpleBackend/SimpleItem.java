@@ -19,6 +19,24 @@ public class SimpleItem {
  
         this.item = name;
     }    
+ 
+    public SimpleItem(Long id, String name){
+ 
+        this.id = id;
+        this.item = name;
+    } 
+
+    // Getter
+
+    public long getId() {
+        return id;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    // Setter
 
     public void setId(long id) {
         this.id = id;

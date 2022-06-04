@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class SimpleController {
 
     @Autowired
     SimpleRepository itemRepository; 
+    
+    Logger logger = LoggerFactory.getLogger(SimpleController.class);
+
 
     /*
     @GetMapping("/test")
@@ -70,11 +75,16 @@ public class SimpleController {
          
         Iterator<SimpleItem> itemIterator = iterableItems.iterator();
 
+        logger.info("----- GET Item -----");
+
         while(itemIterator.hasNext()){
             SimpleItem tempItem = itemIterator.next();
             Optional<SimpleItem> optionalTempItem = itemRepository.findById(tempItem.id);
             itemList.add(tempItem.item);
             optionalItemList.add(optionalTempItem);
+            logger.info("id = {}", optionalTempItem.get().id);
+            logger.info("item = {}", optionalTempItem.get().item);
+
         }
  
         return optionalItemList; 
