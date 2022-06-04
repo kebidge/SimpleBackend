@@ -17,7 +17,7 @@ spec:
         app: simple-backend
     spec:
       containers:
-      - image: kebidge/simple-backend:$GITHUB_SHA
+      - image: kebidge/simple-backend:${{ github.sha }}
         name: simple-backend
         env:
         - name: SPRING_DATASOURCE_PASSWORD

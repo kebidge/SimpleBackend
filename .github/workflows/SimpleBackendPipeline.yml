@@ -63,7 +63,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simple-backend:$GITHUB_SHA
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DEPLOYMENT_NAME }}:${{ github.sha }}
 
       - name: Setup Google Cloud CLI (gcloud)
         uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
