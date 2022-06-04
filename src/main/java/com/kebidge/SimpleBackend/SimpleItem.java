@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class SimpleItem { 
+    
     @Id
     @GeneratedValue
     long id;
@@ -18,4 +19,13 @@ public class SimpleItem {
  
         this.item = name;
     }    
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    public void setItem(String item) {
+        this.item = item;
+    }
+
 }

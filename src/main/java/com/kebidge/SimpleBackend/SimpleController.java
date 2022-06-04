@@ -2,6 +2,8 @@ package com.kebidge.SimpleBackend;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
+
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +25,52 @@ public class SimpleController {
  
         return "Save Item!"; 
     } 
+
+    @PostMapping(path = "/item/{item}", produces = "application/json")
+    public SimpleItem addSimpleItemJSON(@PathVariable String item){
+
+        SimpleItem newItem = new SimpleItem(item);
+
+        Iterable<SimpleItem> iterableItems = itemRepository.findAll();
+        Iterator<SimpleItem> itemTerator = iterableItems.iterator();
+
+        while(itemTerator.hasNext()){
+
+            SimpleItem tempItem = itemTerator.next();
+
+            if (tempItem.item.equals(item)) {  
+
+                newItem.setId(tempItem.id);
+                itemRepository.save(newItem);  
+
+                return newItem;
+            }
+        }
+
+        itemRepository.save(newItem);
+
+        return newItem;
+    }
+
  
-    @GetMapping("/items/")
-    public ArrayList<String> getItems() {
+    @GetMapping("/items")
+    public ArrayList<Optional<SimpleItem>> getItems() {
      
         Iterable<SimpleItem> iterableItems = itemRepository.findAll();
  
         ArrayList<String> itemList = new ArrayList<String>();
+        ArrayList<Optional<SimpleItem>> optionalItemList = new ArrayList<Optional<SimpleItem>>();
          
-        Iterator<SimpleItem> itemTerator = iterableItems.iterator();
-        while(itemTerator.hasNext()){
-            SimpleItem tempItem = itemTerator.next();
+        Iterator<SimpleItem> itemIterator = iterableItems.iterator();
+
+        while(itemIterator.hasNext()){
+            SimpleItem tempItem = itemIterator.next();
+            Optional<SimpleItem> optionalTempItem = itemRepository.findById(tempItem.id);
             itemList.add(tempItem.item);
+            optionalItemList.add(optionalTempItem);
         }
  
-        return itemList; 
+        return optionalItemList; 
     }    
 }
+
