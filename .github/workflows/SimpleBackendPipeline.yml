@@ -74,7 +74,7 @@ jobs:
       - name: Set Cluster # mal probieren -> WICHTIG !!!
 #        run: |-
 #          gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE
-      - uses: google-github-actions/get-gke-credentials@fb08709ba27618c31c09e014e1d8364b02e5042e
+        uses: google-github-actions/get-gke-credentials@fb08709ba27618c31c09e014e1d8364b02e5042e
         with:
           cluster_name: ${{ env.GKE_CLUSTER }}
           location: ${{ env.GKE_ZONE }}
