@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: simple-frontend
+  name: simple-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: simple-frontend
+    spec:
+      containers:
+      - image: kebidge/simple-frontend:latest
+        name: simple-frontend
+        env:
+        - name: SIMPLE_BACKEND_ENDPOINT
+          value: http://simple-backend:80/item/
+        resources: {}
+status: {}

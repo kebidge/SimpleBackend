@@ -4,5 +4,7 @@ kind: Kustomization
 resources:
   - Service-Database.yml
   - Service-SimpleBackend.yml
+  - Service-SimpleFrontend.yml
   - Deployment-Database.yml
   - Deployment-SimpleBackend.yml
+  - Deployment-SimpleFrontend.yml
