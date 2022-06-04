@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +30,7 @@ public class SimpleController {
 		return "Hello Test!";
 	}
     */
-
+    /*
     @PostMapping("/item/{item}")
     public String addItem(@PathVariable String item){
  
@@ -38,7 +38,7 @@ public class SimpleController {
         itemRepository.save(newItem);
  
         return "Save Item!"; 
-    } 
+    } */
 
     @PostMapping(consumes = "application/json", produces = "application/json", path = "/item/add")
     public SimpleItem addShoppingItemRequestBody(@RequestBody SimpleItem newItem) {
@@ -65,7 +65,7 @@ public class SimpleController {
 
 
  
-    @GetMapping("/items")
+    @GetMapping("/item")
     public ArrayList<Optional<SimpleItem>> getItems() {
      
         Iterable<SimpleItem> iterableItems = itemRepository.findAll();
@@ -91,7 +91,7 @@ public class SimpleController {
     }   
 
 
- 
+    /*
     @GetMapping("/allitems")
     public ArrayList<String> getAllItems() {
      
@@ -107,6 +107,6 @@ public class SimpleController {
         }
  
         return itemList; 
-    }   
+    }   */
 }
 
