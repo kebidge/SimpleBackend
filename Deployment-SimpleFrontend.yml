@@ -22,6 +22,6 @@ spec:
         name: simple-frontend
         env:
         - name: SIMPLE_BACKEND_ENDPOINT
-          value: http://simple-backend:80/item/
+          value: http://simple-backend:8080/item/
         resources: {}
 status: {}
