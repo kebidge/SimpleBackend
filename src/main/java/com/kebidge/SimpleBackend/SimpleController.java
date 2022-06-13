@@ -41,7 +41,7 @@ public class SimpleController {
     } */
 
     @PostMapping(consumes = "application/json", produces = "application/json", path = "/item/add")
-    public SimpleItem addShoppingItemRequestBody(@RequestBody SimpleItem newItem) {
+    public SimpleItem addSimpleItemRequestBody(@RequestBody SimpleItem newItem) {
 
         Iterable<SimpleItem> iterableItems = itemRepository.findAll();
         Iterator<SimpleItem> itemTerator = iterableItems.iterator();
